@@ -21,7 +21,9 @@ void swap(int *a, int *b);  // функция для обмена элемент
 
 void bubble_sort(int *arr, int size);   // сортировка пузырьком
 void selection_sort(int *arr, int size);    // сортировка выбором
+
 void quicksort(int *arr, int low, int high);     // быстрая сортировка
-int partition(int *arr, int low, int high);      // функция разделения  массива
+int partition(int *arr, int low, int high);      // функция разделения массива
+int choose_pivot(int *arr, int low, int high);   // функция выбора опорного элемента
 
 #endif

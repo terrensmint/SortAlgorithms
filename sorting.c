@@ -33,13 +33,38 @@ void selection_sort(int *arr, int size){
     }
 }
 
+// функция выбора опорного элемента как медианы
+int choose_pivot(int *arr, int low, int high){
+    int middle = (low + high) / 2;  // медиана
+    if (arr[middle] < arr[low]) swap(&arr[middle], &arr[low]);
+    if (arr[high] < arr[low]) swap(&arr[high], &arr[low]);
+    if (arr[middle] < arr[high]) swap(&arr[middle], &arr[high]);
 
+    return arr[high];   // опорный элемент
+}
 
-// функция разделения  массива
+// функция разделения  массива (по Хоару)
 int partition(int *arr, int low, int high){
-    int pivot = arr[high];  // выбираем опорный элемент
-    int i = low;
+    int pivot = choose_pivot(arr, low, high);  // выбираем опорный элемент
+    int i = low-1;
+    int j = high+1;
 
+    while (1){
+
+        // Двигаем указатель i вправо, пока не найдем элемент больше опорного
+        do {i++;} while (arr[i] < pivot);
+        // Двигаем указатель j влево, пока не найдем элемент меньше опорного
+        do {j--;} while (arr[j] > pivot);
+
+        // Если указатели пересеклись или встретились - разделение завершено
+        if (i >= j){
+            // Возвращаем j - индекс, разделяющий массив на две части
+            return j;
+        }
+        swap(&arr[i], &arr[j]);
+    }
+
+    /* Ломуто
     // элементы, меньшие опорного, помещаются перед ним, а большие или равные — после
     for (int j = low; j < high; j++){
         if (arr[j] <= pivot){
@@ -49,13 +74,14 @@ int partition(int *arr, int low, int high){
     }
     swap(&arr[i], &arr[high]);
     return i;
+    */
 }
 
 // быстрая сортировка
 void quicksort(int *arr, int low, int high){
     if (low < high){
         int p_index = partition(arr, low, high);
-        quicksort(arr, low, p_index-1);
+        quicksort(arr, low, p_index);
         quicksort(arr, p_index+1, high);
     }
 }
