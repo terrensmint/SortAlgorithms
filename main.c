@@ -7,6 +7,10 @@ int main(){
     double selection_time[4] = {0};         // значения времени сортировка выбором
     double quick_time[4] = {0};             // значения времени быстрая сортировка
 
+    unsigned int bubble_swaps[4] = {0};              // количество перестановок сортировки пузырьком
+    unsigned int selection_swaps[4] = {0};           // количество перестановок сортировки выбором
+    unsigned int quick_swaps[4] = {0};                 // количество перестановок быстрой сортировки
+
     for (int j = 0; j < 3; j++){    // j - текущий вид сортировки
         for (int i = 0; i < 4; i++){    // i - указатель на текущий размер массива
             int* arr = create_array(arrs_sizes[i]);
@@ -14,9 +18,9 @@ int main(){
             
             // выбираем алгоритм сортировки исходя из значения j
             switch (j){
-                case 0: bubble_sort(arr, arrs_sizes[i]); break;
-                case 1: selection_sort(arr, arrs_sizes[i]); break;
-                case 2: quicksort(arr, 0, arrs_sizes[i]-1); break;
+                case 0: bubble_sort(arr, arrs_sizes[i], &bubble_swaps[i]); break;
+                case 1: selection_sort(arr, arrs_sizes[i], &selection_swaps[i]); break;
+                case 2: quicksort_main(arr, arrs_sizes[i], &quick_swaps[i]); break;
             }
             clock_t end = clock();  // время на момент конца сортировки
             
@@ -32,19 +36,31 @@ int main(){
             free_array(arr);
         }
 
-        // выводим, сколько алгоритмов успешно отработали
+        // выводим, сколько алгоритмов успешно отработано
         printf("Success (%d/3)\n", j+1);
         printf("\n");
     }
 
-    printf("============== ВРЕМЯ  СОРТИРОВКИ ==============\n");
-    printf("| Размер  | Пузырьком | Выбором   | Быстрая  |\n");
-    printf("|---------|-----------|-----------|----------|\n");
-    printf("| %-7d | %.8lf | %.8lf | %.8lf |\n", N1, bubble_time[0], selection_time[0], quick_time[0]);
-    printf("| %-7d | %.8lf | %.8lf | %.8lf |\n", N2, bubble_time[1], selection_time[1], quick_time[1]);
-    printf("| %-7d | %.8lf | %.8lf | %.8lf |\n", N3, bubble_time[2], selection_time[2], quick_time[2]);
-    printf("| %-7d | %.8lf | %.8lf | %.8lf |\n", N4, bubble_time[3], selection_time[3], quick_time[3]);
-    printf("===============================================\n");
+
+    // Таблица затраченного времени на сортировку
+    printf("=============== ВРЕМЯ СОРТИРОВКИ ===============\n");
+    printf("| Размер | Пузырьком | Выбором   | Быстрая   |\n");
+    printf("|--------|-----------|-----------|-----------|\n");
+    printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N1, bubble_time[0], selection_time[0], quick_time[0]);
+    printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N2, bubble_time[1], selection_time[1], quick_time[1]);
+    printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N3, bubble_time[2], selection_time[2], quick_time[2]);
+    printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N4, bubble_time[3], selection_time[3], quick_time[3]);
+    printf("=================================================\n");
+
+    // Таблица перестановок
+    printf("\n=================== КОЛИЧЕСТВО ПЕРЕСТАНОВОК ===================\n");
+    printf("| Размер  |  Пузырьком   |   Выбором    |   Быстрая    |\n");
+    printf("|---------|--------------|--------------|--------------|\n");
+    printf("| %-7d | %-12u | %-12u | %-12u |\n", N1, bubble_swaps[0], selection_swaps[0], quick_swaps[0]);
+    printf("| %-7d | %-12u | %-12u | %-12u |\n", N2, bubble_swaps[1], selection_swaps[1], quick_swaps[1]);
+    printf("| %-7d | %-12u | %-12u | %-12u |\n", N3, bubble_swaps[2], selection_swaps[2], quick_swaps[2]);
+    printf("| %-7d | %-12u | %-12u | %-12u |\n", N4, bubble_swaps[3], selection_swaps[3], quick_swaps[3]);
+    printf("==============================================================\n");
 
     return 0;
 }

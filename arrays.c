@@ -2,7 +2,13 @@
 
 // Динамическое выделение памяти под массив
 int* create_array(int size){
-    return (int*)malloc(size * sizeof(int));
+    int* array = (int*)malloc(size * sizeof(int));
+    if (array == NULL){
+        printf("Ошибка выделения памяти\n");
+        exit(1);
+    }
+    fill_array(array, size);
+    return array;
 }
 
 // Заполнение массива рандомными целыми числами

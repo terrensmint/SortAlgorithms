@@ -17,13 +17,14 @@ void print_array(int *arr, int size);
 void free_array(int *arr);
 
 // сортировка
-void swap(int *a, int *b);  // функция для обмена элементов местами
+void swap(int *a, int *b, unsigned int *swap_count);  // функция для обмена элементов местами
 
-void bubble_sort(int *arr, int size);   // сортировка пузырьком
-void selection_sort(int *arr, int size);    // сортировка выбором
+void bubble_sort(int *arr, int size, unsigned int *swap_count);   // сортировка пузырьком
+void selection_sort(int *arr, int size, unsigned int *swap_count);    // сортировка выбором
 
-void quicksort(int *arr, int low, int high);     // быстрая сортировка
-int partition(int *arr, int low, int high);      // функция разделения массива
-int choose_pivot(int *arr, int low, int high);   // функция выбора опорного элемента
+void quicksort_main(int *arr, int size, unsigned int *swap_count);    // Обертка быстрой сортировки для первого вызова
+void quicksort(int *arr, int low, int high, unsigned int *swap_count);     // быстрая сортировка
+int partition(int *arr, int low, int high, unsigned int *swap_count);      // функция разделения массива
+int choose_pivot(int *arr, int low, int high, unsigned int *swap_count);   // функция выбора опорного элемента
 
 #endif
