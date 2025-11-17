@@ -43,24 +43,24 @@ int main(){
 
 
     // Таблица затраченного времени на сортировку
-    printf("=============== ВРЕМЯ СОРТИРОВКИ ===============\n");
+    printf("============== ВРЕМЯ СОРТИРОВКИ ==============\n");
     printf("| Размер | Пузырьком | Выбором   | Быстрая   |\n");
     printf("|--------|-----------|-----------|-----------|\n");
     printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N1, bubble_time[0], selection_time[0], quick_time[0]);
     printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N2, bubble_time[1], selection_time[1], quick_time[1]);
     printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N3, bubble_time[2], selection_time[2], quick_time[2]);
     printf("| %-6d | %-9.6lf | %-9.6lf | %-9.6lf |\n", N4, bubble_time[3], selection_time[3], quick_time[3]);
-    printf("=================================================\n");
+    printf("==============================================\n");
 
     // Таблица перестановок
-    printf("\n=================== КОЛИЧЕСТВО ПЕРЕСТАНОВОК ===================\n");
+    printf("\n=============== КОЛИЧЕСТВО ПЕРЕСТАНОВОК ================\n");
     printf("| Размер  |  Пузырьком   |   Выбором    |   Быстрая    |\n");
     printf("|---------|--------------|--------------|--------------|\n");
     printf("| %-7d | %-12u | %-12u | %-12u |\n", N1, bubble_swaps[0], selection_swaps[0], quick_swaps[0]);
     printf("| %-7d | %-12u | %-12u | %-12u |\n", N2, bubble_swaps[1], selection_swaps[1], quick_swaps[1]);
     printf("| %-7d | %-12u | %-12u | %-12u |\n", N3, bubble_swaps[2], selection_swaps[2], quick_swaps[2]);
     printf("| %-7d | %-12u | %-12u | %-12u |\n", N4, bubble_swaps[3], selection_swaps[3], quick_swaps[3]);
-    printf("==============================================================\n");
+    printf("========================================================\n");
 
     return 0;
 }
